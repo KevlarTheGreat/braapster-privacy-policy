@@ -1,0 +1,57 @@
+# 1) one-time: set your Git identity on the Mac (if not set)
+git config --global user.name "Brian Mantel"
+git config --global user.email "your-github-email@example.com"
+
+# 2) create the repo locally
+mkdir braapster-privacy-policy && cd $_
+git init
+cat > index.html <<'HTML'
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Braapster Privacy Policy</title>
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; max-width: 820px; margin: 40px auto; padding: 0 20px; line-height: 1.6; }
+    h1, h2 { line-height: 1.25; }
+    a { text-decoration: none; border-bottom: 1px solid currentColor; }
+    small { color: #666; }
+  </style>
+</head>
+<body>
+  <h1>Privacy Policy</h1>
+  <p><strong>Effective Date:</strong> August 30, 2025</p>
+  <p><strong>Braapster</strong> (“we,” “our,” or “us”) respects your privacy. This Privacy Policy explains how we handle information when you use the Braapster mobile application (“App”).</p>
+  <h2>Information We Collect</h2>
+  <p>We do <strong>not collect, store, or share any personal information</strong> when you use the App. The App does not require you to create an account or provide personal data.</p>
+  <h2>Location Information</h2>
+  <p>The App may request access to your device’s location to calculate the distance between your current location and an event. Location information is used <strong>only while the App is running</strong> to provide this feature and is <strong>not stored, shared, or transmitted</strong> to us or to any third party.</p>
+  <h2>Information Stored Locally</h2>
+  <p>The App allows you to mark certain events as favorites. These favorites are stored only on your device to make them easy for you to find later. This information is not transmitted to us or to any third party and is removed if you uninstall the App or clear the App’s data.</p>
+  <h2>Third-Party Services</h2>
+  <ul>
+    <li><strong>Google Sheets API (Read-Only).</strong> The App uses the Google Sheets API in a <strong>read-only</strong> manner to retrieve event data from sheets we maintain. The App does not write to any sheet, upload user data, or require user authentication with Google.</li>
+    <li><strong>Launching Google Maps.</strong> The App can launch Google Maps (for example, to open directions) but does not embed or integrate the Google Maps SDK. Your use of Google Maps is governed by Google’s <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Privacy Policy</a>.</li>
+    <li><strong>Platform Analytics.</strong> Apple and Google may collect basic platform-level analytics (e.g., installs, crashes, general usage) through their operating systems or app stores. We do not control or access that data.</li>
+  </ul>
+  <h2>Children’s Privacy</h2>
+  <p>The App does not knowingly collect information from children under 13. If you believe a child has provided us information, please contact us and we will address it promptly.</p>
+  <h2>Changes to This Policy</h2>
+  <p>We may update this Privacy Policy from time to time. Updates will be posted here with a new effective date.</p>
+  <h2>Contact Us</h2>
+  <p>If you have questions about this Privacy Policy, you can contact us at:</p>
+  <p><strong>Braapster</strong><br/>Email: <a href="mailto:braapsterapp@gmail.com">braapsterapp@gmail.com</a></p>
+  <p><small>Last updated: August 30, 2025</small></p>
+</body>
+</html>
+HTML
+
+# 3) create a GitHub repo (replace USERNAME with your GitHub handle)
+git add index.html
+git commit -m "Add Braapster Privacy Policy"
+gh repo create braapster-privacy-policy --public --source=. --remote=origin --push  # requires GitHub CLI 'gh' logged in
+
+# 4) enable GitHub Pages (via web UI)
+# Settings → Pages → Source: Deploy from a branch; Branch: main / root; Save
